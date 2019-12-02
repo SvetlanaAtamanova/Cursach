@@ -16,25 +16,25 @@ Button::Button(QString name, QGraphicsItem *parent):
   setBrush(brush);
 
   text_->setDefaultTextColor(Qt::darkMagenta);
-  int xPos = rect().width()/2 - text_->boundingRect().width()/2;
-  int yPos = rect().height()/2 - text_->boundingRect().height()/2;
+  double xPos = rect().width()/2 - text_->boundingRect().width()/2;
+  double yPos = rect().height()/2 - text_->boundingRect().height()/2;
   text_->setPos(xPos,yPos);
 
   setAcceptHoverEvents(true);
 }
 
-void Button::mousePressEvent(QGraphicsSceneMouseEvent *event){
+void Button::mousePressEvent(QGraphicsSceneMouseEvent *){
   clicked();
 }
 
-void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
+void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *){
   QBrush brush;
   brush.setStyle(Qt::SolidPattern);
   brush.setColor(Qt::cyan);
   setBrush(brush);
 }
 
-void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
+void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *){
   QBrush brush;
   brush.setStyle(Qt::SolidPattern);
   brush.setColor(Qt::darkCyan);

@@ -1,7 +1,8 @@
 #include "ball.h"
+#include "game.h"
+
 #include <QBrush>
 #include <QTimer>
-#include "game.h"
 
 extern ArcanoidGame *game;
 
@@ -55,7 +56,7 @@ bool Ball::changeDirection(){
 
 void Ball::collisionWithItems(){
   QList<QGraphicsItem*> collidItems = collidingItems();
-  for (size_t i = 0; i < collidItems.size(); ++i){
+  for (int i = 0; i < collidItems.size(); ++i){
     Platform *platform = dynamic_cast<Platform*>(collidItems[i]);
     Bar *bar = dynamic_cast<Bar*>(collidItems[i]);
 

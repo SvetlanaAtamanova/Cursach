@@ -4,7 +4,7 @@
 
 extern ArcanoidGame *game;
 
-Platform::Platform(QGraphicsItem *parent){
+Platform::Platform(QGraphicsItem *){
   setRect(0, 0, HEIGTH_PLATFORM, WIDTH_PLATFORM);
   setBrush(Qt::magenta);
 }
