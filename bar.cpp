@@ -1,5 +1,6 @@
-#include "bar.h"
 #include <QBrush>
+#include "bar.h"
+
 
 Bar::Bar(QGraphicsItem *parent):
   QGraphicsRectItem(parent)

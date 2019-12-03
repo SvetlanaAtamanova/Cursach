@@ -8,14 +8,14 @@ class Button:public QObject, public QGraphicsRectItem{
   Q_OBJECT
 
 public:
-  Button(QString name, QGraphicsItem* parent=NULL);
+  Button(QString name, QGraphicsItem *parent=nullptr);
 
   void mousePressEvent(QGraphicsSceneMouseEvent *);
   void hoverEnterEvent(QGraphicsSceneHoverEvent *);
   void hoverLeaveEvent(QGraphicsSceneHoverEvent *);
 
 private:
-  QGraphicsTextItem* text_;
+  QGraphicsTextItem *text_;
 
 
 signals:

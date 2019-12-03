@@ -4,14 +4,15 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QWidget>
+#include <vector>
+#include <algorithm>
 #include "platform.h"
 #include "ball.h"
 #include "bar.h"
 #include "score.h"
 #include "constants.h"
 #include "button.h"
-#include <vector>
-#include <algorithm>
+
 
 class ArcanoidGame: public QGraphicsView{
   Q_OBJECT
@@ -19,10 +20,10 @@ class ArcanoidGame: public QGraphicsView{
 public:
   ArcanoidGame(QWidget *parent=nullptr);
   void showStartWindow();
-  void gameOver(QString textToDisplay);
+  void gameOver(QString message);
 
   Score *getScore();
-  int maxScore;
+  int maxScore_;
 
   void drawBall();
   Ball *getBall();

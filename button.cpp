@@ -1,9 +1,8 @@
-#include "button.h"
-#include "constants.h"
-
 #include <QGraphicsTextItem>
 #include <QBrush>
 
+#include "button.h"
+#include "constants.h"
 
 Button::Button(QString name, QGraphicsItem *parent):
   QGraphicsRectItem(parent),

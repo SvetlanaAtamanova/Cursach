@@ -20,7 +20,6 @@ private:
   double speedY_;
   bool changeDirection();
   void collisionWithItems();
-//  void collisionWithBar();
 };
 
 #endif // BALL_H

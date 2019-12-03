@@ -8,8 +8,8 @@
 class Platform: public QGraphicsRectItem{
 
 public:
-  Platform(QGraphicsItem* parent=nullptr);
-  void keyPressEvent(QKeyEvent *event);
+  Platform(QGraphicsItem *parent=nullptr);
+  void keyPressEvent(QKeyEvent *);
   double getCenterX();
 };
 

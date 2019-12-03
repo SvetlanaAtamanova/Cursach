@@ -7,6 +7,8 @@ extern ArcanoidGame *game;
 Platform::Platform(QGraphicsItem *){
   setRect(0, 0, HEIGTH_PLATFORM, WIDTH_PLATFORM);
   setBrush(Qt::magenta);
+  setFlag(QGraphicsItem::ItemIsFocusable, true);
+  setFocus();
 }
 
 void Platform::keyPressEvent(QKeyEvent *event){

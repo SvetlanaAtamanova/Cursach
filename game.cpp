@@ -1,9 +1,12 @@
-#include "game.h"
 #include <QGraphicsTextItem>
 #include <QFont>
 
+#include "game.h"
+
+
 ArcanoidGame::ArcanoidGame(QWidget *parent):
   QGraphicsView(parent),
+  maxScore_(0),
   gameScene_(new QGraphicsScene(0, 0, HEIGTH_SCENE, WIDTH_SCENE)),
   ball_(nullptr)
 {
@@ -19,7 +22,7 @@ void ArcanoidGame::showStartWindow(){
 
 
   QGraphicsTextItem *titleText = new QGraphicsTextItem(QString("Arcanoid"));
-  titleText->setFont(QFont("comic sans",50));
+  titleText->setFont(QFont("times",50));
   double txPos = this->width()/2 - titleText->boundingRect().width()/2;
   int tyPos = 150;
   titleText->setPos(txPos,tyPos);
@@ -40,30 +43,18 @@ void ArcanoidGame::showStartWindow(){
   gameScene_->addItem(quitButton);
 }
 
-// создание кубиков
 void ArcanoidGame::drawBars(){
-  int maxScore = 0;
   for (size_t i = 1; i < 21; ++i){
     drawColumn(i * 40);
-    maxScore += 5;
+    maxScore_ += 5;
   }
   this->score_->setScore(0);
 }
 
-// строим столбец (всего 5)
 void ArcanoidGame::drawColumn(double x){
   for (size_t i = 0; i < 5; ++i){
     Bar *block = new Bar();
     block->setPos(x, i * 50);
-
-/*    if(i > 2)
-      block->setDegree(BarDegree::EASY);
-    else if(i == 2)
-      block->setDegree(BarDegree::MEDIUM);
-    else if(i == 1)
-      block->setDegree(BarDegree::HARD);
-    else if(i == 0)
-      block->setDegree(BarDegree::ULTRA_HARD);*/
 
     switch (i) {
     case 0:
@@ -83,6 +74,8 @@ void ArcanoidGame::drawColumn(double x){
     bars_.push_back(block);
   }
 }
+
+
 
 void ArcanoidGame::start(){
   gameScene_->clear();
@@ -104,6 +97,7 @@ void ArcanoidGame::start(){
   drawBars();
 }
 
+
 void ArcanoidGame::gameOver(QString textToDisplay){
   Button *playAgain = new Button(QString("Play again"));
   double bxPos = this->width()/2 - playAgain->boundingRect().width()/2;
@@ -119,7 +113,7 @@ void ArcanoidGame::gameOver(QString textToDisplay){
   connect(quit,SIGNAL(clicked()),this,SLOT(close()));
 
   QGraphicsTextItem *overText = new QGraphicsTextItem(textToDisplay);
-  overText->setFont(QFont("comic sans",50));
+  overText->setFont(QFont("times",50));
   overText->setDefaultTextColor(Qt::white);
   double txPos = this->width()/2 - overText->boundingRect().width()/2;
   int tyPos = 150;
@@ -145,7 +139,7 @@ Score *ArcanoidGame::getScore(){
 
 void ArcanoidGame::drawBall(){
   ball_ = new Ball();
-  ball_->setPos(width()/2 - 12, height()/2 + 12);
+  ball_->setPos(width()/2 - 15, height()/2 + 15);
   gameScene_->addItem(ball_);
 }
 

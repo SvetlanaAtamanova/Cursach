@@ -21,7 +21,7 @@ void Score::setScore(int score){
 
 void Score::increaseScore(){
   setPlainText(QString("Score: ") + QString::number(++score_));
-  if (score_ == 100){
+  if (score_ == game->maxScore_){
     game->gameOver("You win");
   }
 }
