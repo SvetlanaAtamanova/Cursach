@@ -1,8 +1,6 @@
+#include <QTimer>
 #include "ball.h"
 #include "game.h"
-
-#include <QBrush>
-#include <QTimer>
 
 extern ArcanoidGame *game;
 

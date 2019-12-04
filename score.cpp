@@ -1,6 +1,4 @@
 #include "score.h"
-#include <QFont>
-
 #include <game.h>
 
 extern ArcanoidGame *game;

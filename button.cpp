@@ -1,6 +1,3 @@
-#include <QGraphicsTextItem>
-#include <QBrush>
-
 #include "game.h"
 #include "button.h"
 #include "constants.h"

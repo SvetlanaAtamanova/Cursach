@@ -1,11 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QWidget>
 #include <vector>
-#include <algorithm>
 #include "platform.h"
 #include "ball.h"
 #include "bar.h"

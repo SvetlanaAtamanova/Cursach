@@ -1,6 +1,3 @@
-#include <QGraphicsTextItem>
-#include <QFont>
-
 #include "game.h"
 
 

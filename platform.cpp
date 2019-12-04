@@ -1,5 +1,4 @@
 #include "platform.h"
-#include <QBrush>
 #include <game.h>
 
 extern ArcanoidGame *game;
