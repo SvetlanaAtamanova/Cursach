@@ -5,10 +5,8 @@
 extern ArcanoidGame *game;
 
 Platform::Platform(QGraphicsItem *){
-  setRect(0, 0, HEIGTH_PLATFORM, WIDTH_PLATFORM);
+  setRect(0, 0, WIDTH_PLATFORM, HEIGTH_PLATFORM);
   setBrush(Qt::magenta);
-  setFlag(QGraphicsItem::ItemIsFocusable, true);
-  setFocus();
 }
 
 void Platform::keyPressEvent(QKeyEvent *event){
@@ -18,7 +16,7 @@ void Platform::keyPressEvent(QKeyEvent *event){
     }
   }
   else if(event->key() == Qt::Key_Right){
-    if(pos().x() + HEIGTH_PLATFORM < HEIGTH_SCENE){
+    if(pos().x() + WIDTH_PLATFORM < WIDTH_SCENE){
       setPos(x() + MOVE_PLATFORM, y());
     }
   }

@@ -1,14 +1,19 @@
 #include <QGraphicsTextItem>
 #include <QBrush>
 
+#include "game.h"
 #include "button.h"
 #include "constants.h"
 
-Button::Button(QString name, QGraphicsItem *parent):
+
+Button::Button(QString name, int posY, QGraphicsItem *parent):
   QGraphicsRectItem(parent),
-  text_(new QGraphicsTextItem(name,this))
+  text_(new QGraphicsTextItem(name,this)),
+  posX_(WIDTH_SCENE/2 - WIDTH_BUTTON/2),
+  posY_(posY)
 {
   setRect(0,0,WIDTH_BUTTON,HEIGTH_BUTTON);
+  setPos(posX_,posY_);
   QBrush brush;
   brush.setStyle(Qt::SolidPattern);
   brush.setColor(Qt::darkCyan);

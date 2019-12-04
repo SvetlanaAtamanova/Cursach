@@ -7,10 +7,10 @@
 ArcanoidGame::ArcanoidGame(QWidget *parent):
   QGraphicsView(parent),
   maxScore_(0),
-  gameScene_(new QGraphicsScene(0, 0, HEIGTH_SCENE, WIDTH_SCENE)),
+  gameScene_(new QGraphicsScene(0, 0, WIDTH_SCENE, HEIGTH_SCENE)),
   ball_(nullptr)
 {
-  setFixedSize(HEIGTH_SCENE, WIDTH_SCENE);
+  setFixedSize(WIDTH_SCENE, HEIGTH_SCENE);
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
@@ -20,25 +20,18 @@ void ArcanoidGame::showStartWindow(){
   setScene(gameScene_);
   gameScene_->addPixmap(QPixmap("C:/Users/soata/Projects/Cursach/ARCANOID/img/background3.jpg"));
 
-
-  QGraphicsTextItem *titleText = new QGraphicsTextItem(QString("Arcanoid"));
+  QGraphicsTextItem *titleText = new QGraphicsTextItem("Arcanoid");
   titleText->setFont(QFont("times",50));
   double txPos = this->width()/2 - titleText->boundingRect().width()/2;
   int tyPos = 150;
   titleText->setPos(txPos,tyPos);
   gameScene_->addItem(titleText);
 
-  Button *playButton = new Button(QString("New game"));
-  double bxPos = this->width()/2 - playButton->boundingRect().width()/2;
-  int byPos = 275;
-  playButton->setPos(bxPos,byPos);
+  Button *playButton = new Button("New game", 275);
   connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
   gameScene_->addItem(playButton);
 
-  Button *quitButton = new Button(QString("Exit"));
-  double qxPos = this->width()/2 - quitButton->boundingRect().width()/2;
-  int qyPos = 350;
-  quitButton->setPos(qxPos,qyPos);
+  Button *quitButton = new Button("Exit", 350);
   connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
   gameScene_->addItem(quitButton);
 }
@@ -98,21 +91,16 @@ void ArcanoidGame::start(){
 }
 
 
-void ArcanoidGame::gameOver(QString textToDisplay){
-  Button *playAgain = new Button(QString("Play again"));
-  double bxPos = this->width()/2 - playAgain->boundingRect().width()/2;
-  int byPos = 275;
-  playAgain->setPos(bxPos, byPos);
+void ArcanoidGame::gameOver(QString message){
+  Button *playAgain = new Button("Play again", 275);
   gameScene_->addItem(playAgain);
   connect(playAgain,SIGNAL(clicked()),this,SLOT(restart()));
 
-  Button *quit = new Button(QString("Exit"));
-  int qyPos = 350;
-  quit->setPos(bxPos,qyPos);
+  Button *quit = new Button("Exit", 350);
   gameScene_->addItem(quit);
   connect(quit,SIGNAL(clicked()),this,SLOT(close()));
 
-  QGraphicsTextItem *overText = new QGraphicsTextItem(textToDisplay);
+  QGraphicsTextItem *overText = new QGraphicsTextItem(message);
   overText->setFont(QFont("times",50));
   overText->setDefaultTextColor(Qt::white);
   double txPos = this->width()/2 - overText->boundingRect().width()/2;
@@ -126,7 +114,6 @@ void ArcanoidGame::gameOver(QString textToDisplay){
 void ArcanoidGame::restart(){
   delete platform_;
   delete score_;
-  bars_.clear();
   delete ball_;
   gameScene_->clear();
   start();
@@ -158,13 +145,14 @@ void ArcanoidGame::destroyBall(){
 
 void ArcanoidGame::deleteBar(Bar* block){
   gameScene_->removeItem(block);
-  std::vector<Bar*>::iterator it;
   bars_.erase(std::find(bars_.begin(), bars_.end(), block));
   delete block;
 }
 
 void ArcanoidGame::deleteAllBars(){
-  for(std::vector<Bar*>::iterator it = bars_.begin(); it != bars_.end(); ++it) {
+  std::vector<Bar*>::iterator it;
+  for(it = bars_.begin(); it != bars_.end(); ++it) {
     delete (*it);
   }
+  bars_.clear();
 }

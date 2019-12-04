@@ -5,7 +5,7 @@
 Bar::Bar(QGraphicsItem *parent):
   QGraphicsRectItem(parent)
 {
-  setRect(0,0, HEIGTH_BAR, WIDTH_BAR);
+  setRect(0,0, WIDTH_BAR, HEIGTH_BAR);
   setDegree(BarDegree::EASY);
 }
 

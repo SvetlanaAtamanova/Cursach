@@ -7,7 +7,7 @@
 class Bar: public QGraphicsRectItem{
 
 public:
-  Bar(QGraphicsItem* parent=nullptr);
+  Bar(QGraphicsItem *parent=nullptr);
   void setDegree(BarDegree degree_);
   bool decreaseDegree();
 
