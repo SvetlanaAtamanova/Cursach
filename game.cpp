@@ -206,6 +206,7 @@ void ArcanoidGame::restart(){
   delete platform_;
   delete score_;
   ball_ = nullptr;
+  maxScore_ = 0;
   gameScene_->clear();
   start();
 }
