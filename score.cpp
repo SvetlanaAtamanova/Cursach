@@ -1,5 +1,5 @@
 #include "score.h"
-#include <game.h>
+#include "game.h"
 
 extern ArcanoidGame *game;
 
@@ -19,8 +19,12 @@ void Score::setScore(int score){
 
 void Score::increaseScore(){
   setPlainText(QString("Score: ") + QString::number(++score_));
+}
+
+bool Score::checkScore(){
   if (score_ == game->maxScore_){
-    game->gameOver("You win");
+    return true;
   }
+  return false;
 }
 

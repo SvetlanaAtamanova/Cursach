@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <QGraphicsView>
+#include <QGraphicsTextItem>
+
 #include <vector>
 #include "platform.h"
 #include "ball.h"
@@ -9,6 +11,8 @@
 #include "score.h"
 #include "constants.h"
 #include "button.h"
+#include "gray-bar.h"
+
 
 
 class ArcanoidGame: public QGraphicsView{
@@ -27,8 +31,11 @@ public:
   void destroyBall();
 
   std::vector<Bar*> bars_;
+  std::vector<GrayBar*> grayBars_;
   void deleteBar(Bar *bar);
   void deleteAllBars();
+  int level_;
+  void increaseLevel();
 
 public slots:
   void start();

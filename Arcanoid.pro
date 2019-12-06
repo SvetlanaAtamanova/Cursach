@@ -15,6 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
     bar.cpp \
     game.cpp \
+    gray-bar.cpp \
     platform.cpp \
     ball.cpp \
     score.cpp \
@@ -24,6 +25,7 @@ HEADERS  += \
     bar.h \
     button.h \
     game.h \
+    gray-bar.h \
     platform.h \
     ball.h \
     score.h \

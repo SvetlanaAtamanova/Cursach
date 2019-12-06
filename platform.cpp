@@ -1,5 +1,5 @@
 #include "platform.h"
-#include <game.h>
+#include "game.h"
 
 extern ArcanoidGame *game;
 

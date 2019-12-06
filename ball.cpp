@@ -22,12 +22,15 @@ double Ball::getCenterX(){
   return x() + rect().width()/2;
 }
 
+void Ball::deleteBall(){
+  delete(game->getBall());
+}
+
 void Ball::move(){
   collisionWithItems();
   moveBy(speedX_, speedY_);
   if(!changeDirection()){
-    game->destroyBall();
-    game->deleteAllBars();
+    deleteBall();
     game->gameOver("Game over");
   }
 }
@@ -54,15 +57,24 @@ void Ball::collisionWithItems(){
   for (int i = 0; i < collidItems.size(); ++i){
     Platform *platform = dynamic_cast<Platform*>(collidItems[i]);
     Bar *bar = dynamic_cast<Bar*>(collidItems[i]);
+    GrayBar *grayBar = dynamic_cast<GrayBar*>(collidItems[i]);
 
     if (platform){
       double ballX = getCenterX();
       double platformX = platform->getCenterX();
 
       speedY_ = -1 * speedY_;
-      speedX_ = (speedX_ + (ballX - platformX))/15;
+      speedX_ = (speedX_ + (ballX - platformX))/20;
     }
 
+    if (grayBar){
+      double ballY = pos().y();
+      double barY = grayBar->pos().y();
+      if ((ballY >= barY && speedY_ < 0) || (barY >= ballY && speedY_ > 0 ))
+        speedY_ = -1 * speedY_;
+      else
+        speedX_ = -1 * speedX_;
+    }
 
     if (bar){
       double ballY = pos().y();
@@ -78,6 +90,13 @@ void Ball::collisionWithItems(){
       if(!bar->decreaseDegree()){
         game->deleteBar(bar);
         game->getScore()->increaseScore();
+        if (game->getScore()->checkScore()){
+          speedX_ = 0;
+          speedY_ = 0;
+          game->destroyBall();
+          game->increaseLevel();
+          game->gameOver("You win");
+        }
       }
     }
     return;

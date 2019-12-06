@@ -9,6 +9,7 @@ public:
 
   void setScore(int score_);
   void increaseScore();
+  bool checkScore();
 
 private:
   int score_;
